@@ -2,8 +2,7 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-
-import { chats } from '../../../mock-data';
+import AvatarPlaceholder from '../../../utils/AvatarPlaceholder';
 
 const styles = theme => ({
     conversationsList: {
@@ -12,11 +11,11 @@ const styles = theme => ({
     }
 })
 
-const Conversations = ({ classes }) => (
+const Conversations = ({ classes, chats }) => (
     <List className={classes.conversationsList}>
         {chats.map((chat, index) => (
             <ListItem key={index} button>
-                <Avatar>{chat.title && chat.title[0]}</Avatar>
+                <Avatar>{AvatarPlaceholder(chat.title)}</Avatar>
                 <ListItemText primary={chat.title} />
             </ListItem>
         ))}

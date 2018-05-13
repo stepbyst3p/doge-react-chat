@@ -15,7 +15,7 @@ const styles = theme => ({
     }
 })
 
-const SideBar = ({ classes }) => (
+const SideBar = ({ classes, chats }) => (
     <Drawer
         variant="permanent"
         classes={{
@@ -24,7 +24,7 @@ const SideBar = ({ classes }) => (
     >
         <Search />
         <Divider />
-        <Conversations />
+        <Conversations chats={chats} />
         <NewConversationButton />
         <BottomNav />
     </Drawer>

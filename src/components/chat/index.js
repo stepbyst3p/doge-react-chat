@@ -14,9 +14,9 @@ const styles = theme => ({
     }
 })
 
-const Chat = ({ classes }) => (
+const Chat = ({ classes, messages }) => (
     <main className={classes.main}>
-        <Dialogue />
+        <Dialogue messages={messages} />
         <TextArea />
     </main>
 )

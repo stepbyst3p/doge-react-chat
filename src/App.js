@@ -4,6 +4,7 @@ import Chat from "./components/Chat";
 import SideBar from "./components/SideBar";
 import ChatHeader from "./components/ChatHeader";
 
+import { chats, messages } from './mock-data';
 
 const styles = theme => ({
     root: {
@@ -21,8 +22,8 @@ class App extends Component {
         return (
             <div className={classes.root}>
                 <ChatHeader />
-                <SideBar />
-                <Chat />
+                <SideBar chats={chats} />
+                <Chat messages={messages} />
             </div>
         );
     }
