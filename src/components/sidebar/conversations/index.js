@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import AvatarPlaceholder from '../../../utils/AvatarPlaceholder';
+import GenerateAvatarPlaceholder from '../../../utils/GenerateAvatarPlaceholder';
 
 const styles = theme => ({
     conversationsList: {
@@ -15,7 +15,7 @@ const Conversations = ({ classes, chats }) => (
     <List className={classes.conversationsList}>
         {chats.map((chat, index) => (
             <ListItem key={index} button>
-                <Avatar>{AvatarPlaceholder(chat.title)}</Avatar>
+                <Avatar>{GenerateAvatarPlaceholder(chat.title)}</Avatar>
                 <ListItemText primary={chat.title} />
             </ListItem>
         ))}

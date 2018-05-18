@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { withStyles } from 'material-ui/styles';
-import Chat from "./components/Chat";
-import SideBar from "./components/SideBar";
-import ChatHeader from "./components/ChatHeader";
+import Chat from "./Chat";
+import SideBar from "./SideBar";
+import ChatHeader from "./ChatHeader";
 
-import { chats, messages } from './mock-data';
+import { chats, messages } from '../mock-data';
 
 const styles = theme => ({
     root: {

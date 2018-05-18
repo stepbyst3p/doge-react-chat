@@ -1,4 +1,4 @@
-export default function AvatarPlaceholder(name) {
+export default function generateAvatarPlaceholder(name) {
     try {
         return name
             .split(' ')

@@ -1,6 +1,6 @@
 import React from "react";
-import Dialogue from './Dialogue';
-import TextArea from './TextArea';
+import MessageList from './MessageList';
+import MessageInput from './MessageInput';
 import { withStyles } from "material-ui";
 
 const styles = theme => ({
@@ -16,8 +16,8 @@ const styles = theme => ({
 
 const Chat = ({ classes, messages }) => (
     <main className={classes.main}>
-        <Dialogue messages={messages} />
-        <TextArea />
+        <MessageList messages={messages} />
+        <MessageInput />
     </main>
 )
 

@@ -21,7 +21,7 @@ const styles = theme => ({
     }
 })
 
-const TextArea = ({ classes }) => (
+const MessageInput = ({ classes }) => (
     <div className={classes.textFieldWrapper}>
         <Paper className={classes.textFieldPaper}>
             <TextField id="time" type="textarea" className={classes.textField} placeholder="Type your message..." />
@@ -29,4 +29,4 @@ const TextArea = ({ classes }) => (
     </div>
 )
 
-export default withStyles(styles)(TextArea);
+export default withStyles(styles)(MessageInput)
