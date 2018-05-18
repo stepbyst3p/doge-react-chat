@@ -3,16 +3,23 @@ import { withStyles } from 'material-ui/styles';
 import Message from './Message';
 
 const styles = theme => ({
-    messages: {
+    messagesWrapper: {
         width: "100%",
         height: "100%",
-        overflowX: "scroll",
+        overflow: "scroll",
         paddingTop: "24px",
         paddingBottom: "120px"
     }
 })
 
+// TODO Сделать Pure Component 
 class MessageList extends React.Component {
+    componentDidMount() {
+        this.scrollDownHistory();
+    }
+    componentDidUpdate() {
+        this.scrollDownHistory();
+    }
     scrollDownHistory() {
         const messagesWrapper = this.refs.messagesWrapper;
         if (messagesWrapper) {
