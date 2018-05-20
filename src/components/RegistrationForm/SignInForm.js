@@ -18,9 +18,7 @@ const styles = theme => ({
     }
 });
 
-
-
-const RegistrationForm = ({ classes }) => (
+const SignUpForm = ({ classes }) => (
     <form noValidate autoComplete="off" className={classes.form}>
         <TextField
             id="username"
@@ -34,14 +32,8 @@ const RegistrationForm = ({ classes }) => (
             autoComplete="current-password"
             margin="normal"
         />
-        <TextField
-            id="RepeatPassword"
-            type="password"
-            label="Repeat Password"
-            margin="normal"
-        />
-        <Button variant="raised" color="primary">Sign Up</Button>
+        <Button variant="raised" color="primary">Login</Button>
     </form>
 );
 
-export default withStyles(styles)(RegistrationForm);
+export default withStyles(styles)(SignUpForm);

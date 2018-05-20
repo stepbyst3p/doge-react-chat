@@ -1,13 +1,12 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from "@material-ui/core/styles";
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import RegistrationForm from './RegistrationForm';
+import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 
 const styles = theme => ({
@@ -55,6 +54,13 @@ class LoginForms extends React.Component {
 
         return (
             <div className={classes.root}>
+                <AppBar>
+                    <Toolbar>
+                        <Typography variant="title" color="inherit">
+                            The D0g3st Chat Evah 🐶
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
                 <div className={classes.formContainer}>
                     <Paper>
                         <AppBar position="static" color="default">
@@ -65,7 +71,7 @@ class LoginForms extends React.Component {
                         </AppBar>
                         {value === 0 &&
                             <TabContainer>
-                                <RegistrationForm />
+                                <SignInForm />
                             </TabContainer>}
                         {value === 1 &&
                             <TabContainer>
