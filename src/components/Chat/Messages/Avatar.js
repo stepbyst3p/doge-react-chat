@@ -1,5 +1,5 @@
 import React from 'react';
-import MUIAvatar from 'material-ui/Avatar';
+import MUIAvatar from '@material-ui/core/Avatar';
 import pickColorFrom from '../../../utils/PickColorFrom';
 import generateAvatarPlaceholder from '../../../utils/GenerateAvatarPlaceholder';
 

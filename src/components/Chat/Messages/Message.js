@@ -1,8 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
-import { withStyles } from 'material-ui';
-import Typography from 'material-ui/Typography';
-import Paper from 'material-ui/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import Avatar from './Avatar';
 
 const styles = theme => ({

@@ -1,7 +1,7 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
-import { withStyles } from 'material-ui';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     textFieldWrapper: {

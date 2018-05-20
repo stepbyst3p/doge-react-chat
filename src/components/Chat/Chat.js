@@ -1,7 +1,7 @@
 import React from "react";
 import Messages from './Messages';
 import MessageInput from './MessageInput';
-import { withStyles } from "material-ui";
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     main: {

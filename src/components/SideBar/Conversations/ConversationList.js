@@ -1,6 +1,6 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import { withStyles } from '@material-ui/core/styles';
+import List, { ListItem, ListItemText } from '@material-ui/core/List';
 import Avatar from '../../Chat/Messages/Avatar';
 
 const styles = theme => ({
