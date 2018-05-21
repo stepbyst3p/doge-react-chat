@@ -5,35 +5,85 @@ import Button from '@material-ui/core/Button';
 
 
 const styles = theme => ({
-    formContainer: {
-        width: 500,
-        marginTop: 88,
-    },
-    tab: {
-        flexGrow: 1
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-    }
-});
+  signUpButton: {
+    marginTop: theme.spacing.unit * 2,
+  }
+})
 
-const SignUpForm = ({ classes }) => (
-    <form noValidate autoComplete="off" className={classes.form}>
+class SigninForm extends React.Component {
+  state = {
+    username: {
+      value: '',
+      isValid: true,
+    },
+    password: {
+      value: '',
+      isValid: true,
+    },
+  }
+
+  handleInputChange = (event) => {
+    event.persist();
+    const { name, value } = event.target;
+
+    this.setState((prevState) => ({
+      [name]: {
+        ...prevState[name],
+        value,
+      },
+    }));
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { username, password } = this.state;
+  }
+
+  render() {
+    const { classes } = this.props;
+    const { username, password } = this.state;
+
+    return (
+      <form onSubmit={this.handleSubmit}>
         <TextField
-            id="username"
-            label="Username"
-            margin="normal"
+          required
+          fullWidth
+          label="Username"
+          placeholder="Type your username..."
+          type="text"
+          name="username"
+          margin="normal"
+          autoComplete="username"
+          value={username.value}
+          onChange={this.handleInputChange}
+          error={!username.isValid}
         />
         <TextField
-            id="password"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            margin="normal"
+          required
+          fullWidth
+          label="Password"
+          placeholder="Type your username..."
+          type="password"
+          name="password"
+          margin="normal"
+          autoComplete="current-password"
+          value={password.value}
+          onChange={this.handleInputChange}
+          error={!password.isValid}
         />
-        <Button variant="raised" color="primary">Login</Button>
-    </form>
-);
+        <Button
+          fullWidth
+          variant="raised"
+          type="submit"
+          color="primary"
+          className={classes.signUpButton}
+        >
+          Login
+        </Button>
+      </form>
+    );
+  }
+}
 
-export default withStyles(styles)(SignUpForm);
+
+export default withStyles(styles)(SigninForm);

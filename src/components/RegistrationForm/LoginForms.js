@@ -1,23 +1,16 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import { withStyles } from "@material-ui/core/styles";
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import SignInForm from './SignInForm';
-import SignUpForm from './SignUpForm';
+import SigninForm from './SigninForm';
+import SignupForm from './SignupForm';
 
 const styles = theme => ({
-    root: {
-        position: 'relative',
-        display: 'flex',
-        width: '100%',
-        height: '100%',
-        backgroundColor: theme.palette.background.default,
-        justifyContent: "center"
-    },
     formContainer: {
         width: 500,
         marginTop: 88,
@@ -28,57 +21,55 @@ const styles = theme => ({
     form: {
         display: "flex",
         flexDirection: "column",
+    },
+    tabContent: {
+        padding: theme.spacing.unit * 3
     }
 });
 
-function TabContainer(props) {
-    return (
-        <Typography component="div" style={{ padding: 8 * 3 }}>
-            {props.children}
-        </Typography>
-    );
-}
-
 class LoginForms extends React.Component {
     state = {
-        value: 0,
+        activeTab: 0,
     };
 
-    handleChange = (event, value) => {
-        this.setState({ value });
+    handleTabChange = (event, value) => {
+        this.setState({ activeTab: value });
     };
 
     render() {
         const { classes } = this.props;
-        const { value } = this.state;
+        const { activeTab } = this.state;
 
         return (
             <div className={classes.root}>
                 <AppBar>
                     <Toolbar>
                         <Typography variant="title" color="inherit">
-                            The D0g3st Chat Evah 🐶
+                            The D0g3st Chat Evah <span role="img" aria-label="doge">🐶</span>
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <div className={classes.formContainer}>
-                    <Paper>
-                        <AppBar position="static" color="default">
-                            <Tabs value={value} onChange={this.handleChange} fullwidth>
-                                <Tab label="Login" href="#login" className={classes.tab} />
-                                <Tab label="Sign up" href="#sign-up" className={classes.tab} />
-                            </Tabs>
-                        </AppBar>
-                        {value === 0 &&
-                            <TabContainer>
-                                <SignInForm />
-                            </TabContainer>}
-                        {value === 1 &&
-                            <TabContainer>
-                                <SignUpForm />
-                            </TabContainer>}
-                    </Paper>
-                </div>
+                <Grid container justify="center">
+                    <Grid item>
+                        <div className={classes.formContainer}>
+                            <Paper>
+                                <AppBar position="static" color="default">
+                                    <Tabs value={activeTab} onChange={this.handleTabChange} fullwidth>
+                                        <Tab label="Login" href="#login" className={classes.tab} />
+                                        <Tab label="Sign up" href="#sign-up" className={classes.tab} />
+                                    </Tabs>
+                                </AppBar>
+                                <div className={classes.tabContent}>
+                                    {activeTab === 0 &&
+                                        <SigninForm />}
+                                    {activeTab === 1 &&
+                                        <SignupForm />
+                                    }
+                                </div>
+                            </Paper>
+                        </div>
+                    </Grid>
+                </Grid>
             </div>
         );
     }
