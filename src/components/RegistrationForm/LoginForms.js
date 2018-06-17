@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -37,8 +38,14 @@ class LoginForms extends React.Component {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, signup, login, isAuthenticated } = this.props;
         const { activeTab } = this.state;
+
+        if (isAuthenticated) {
+            return (
+                <Redirect to="/chat" />
+            )
+        }
 
         return (
             <div className={classes.root}>
@@ -54,7 +61,7 @@ class LoginForms extends React.Component {
                         <div className={classes.formContainer}>
                             <Paper>
                                 <AppBar position="static" color="default">
-                                    <Tabs value={activeTab} onChange={this.handleTabChange} fullwidth>
+                                    <Tabs value={activeTab} onChange={this.handleTabChange}>
                                         <Tab label="Login" href="#login" className={classes.tab} />
                                         <Tab label="Sign up" href="#sign-up" className={classes.tab} />
                                     </Tabs>
