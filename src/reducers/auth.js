@@ -1,8 +1,4 @@
-import {
-    SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE,
-    LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
-    LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE
-} from '../constants';
+import * as types from '../constants';
 
 const initialState = {
     isAuthenticated: false,
@@ -12,27 +8,27 @@ const initialState = {
 
 export default function auth(state, action) {
     switch (action.type) {
-        case SIGNUP_REQUEST:
-        case LOGIN_REQUEST:
-        case LOGOUT_REQUEST:
-        case SIGNUP_SUCCESS:
-        case LOGIN_SUCCESS:
+        case types.SIGNUP_REQUEST:
+        case types.LOGIN_REQUEST:
+        case types.LOGOUT_REQUEST:
+        case types.SIGNUP_SUCCESS:
+        case types.LOGIN_SUCCESS:
             return {
                 ...state,
                 isAuthenticated: true,
                 user: action.payload.user,
                 token: action.payload.token
             };
-        case LOGOUT_SUCCESS:
+        case types.LOGOUT_SUCCESS:
             return {
                 ...state,
                 isAuthenticated: false,
                 user: null,
                 token: ''
             };
-        case SIGNUP_FAILURE:
-        case LOGIN_FAILURE:
-        case LOGOUT_FAILURE:
+        case types.SIGNUP_FAILURE:
+        case types.LOGIN_FAILURE:
+        case types.LOGOUT_FAILURE:
 
         default:
             return initialState;
