@@ -1,31 +1,30 @@
-import React from 'react';
-import fetch from 'isomorphic-fetch'
+import React from "react";
+import fetch from "isomorphic-fetch";
 import { withStyles } from "@material-ui/core/styles";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
     signUpButton: {
-        marginTop: theme.spacing.unit * 2,
+        marginTop: theme.spacing.unit * 2
     }
-})
+});
 
 class SignupForm extends React.Component {
     state = {
         username: {
-            value: '',
-            isValid: true,
+            value: "",
+            isValid: true
         },
         password: {
-            value: '',
-            isValid: true,
+            value: "",
+            isValid: true
         },
         repeatedPassword: {
-            value: '',
-            isValid: true,
-        },
-    }
+            value: "",
+            isValid: true
+        }
+    };
 
     validate = () => {
         const { password, repeatedPassword } = this.state;
@@ -33,25 +32,25 @@ class SignupForm extends React.Component {
 
         this.setState({
             password: { ...password, isValid },
-            repeatedPassword: { ...repeatedPassword, isValid },
+            repeatedPassword: { ...repeatedPassword, isValid }
         });
 
         return isValid;
-    }
+    };
 
-    handleInputChange = (event) => {
+    handleInputChange = event => {
         event.persist();
         const { name, value } = event.target;
 
-        this.setState((prevState) => ({
+        this.setState(prevState => ({
             [name]: {
                 ...prevState[name],
-                value,
-            },
+                value
+            }
         }));
-    }
+    };
 
-    handleSubmit = (event) => {
+    handleSubmit = event => {
         event.preventDefault();
 
         if (!this.validate()) {
@@ -59,21 +58,23 @@ class SignupForm extends React.Component {
         }
         const { username, password } = this.state;
 
-        fetch('http://localhost:5555/v1/signup', {
+        this.props.onSubmit(username.value, password.value);
+
+        fetch("http://localhost:5555/v1/signup", {
             method: "POST",
             body: JSON.stringify({
                 username: username.value,
-                password: password.value,
+                password: password.value
             }),
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
         })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(reason => console.error(reason));
-    }
+    };
 
     render() {
         const { classes } = this.props;
@@ -128,7 +129,7 @@ class SignupForm extends React.Component {
                     className={classes.signUpButton}
                 >
                     Signup
-        </Button>
+                </Button>
             </form>
         );
     }
