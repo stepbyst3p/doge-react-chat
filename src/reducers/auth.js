@@ -4,10 +4,12 @@ import {
     LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE
 } from '../constants';
 
+const token = localStorage.getItem('token');
+
 const initialState = {
     isAuthenticated: false,
     user: {},
-    token: ''
+    token
 };
 
 export default function auth(state, action) {

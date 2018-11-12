@@ -10,7 +10,7 @@ export function signup(username, password) {
             type: SIGNUP_REQUEST,
         });
 
-        return fetch('http://localhost:5555/v1/signup', {
+        return fetch('http://localhost:27017/v1/signup', {
             method: 'POST',
             body: JSON.stringify({
                 username,
@@ -28,10 +28,18 @@ export function signup(username, password) {
                 }
                 throw new Error(json.message)
             })
-            .then(json => dispatch({
-                type: SIGNUP_SUCCESS,
-                payload: json,
-            }))
+            .then(json => {
+                if (!json.token) {
+                    throw new Error('token has not been provided')
+                }
+
+                localStorage.setItem('token', json.token)
+
+                dispatch({
+                    type: SIGNUP_SUCCESS,
+                    payload: json,
+                })
+            })
             .catch(reason => dispatch({
                 type: SIGNUP_FAILURE,
                 payload: reason
@@ -46,7 +54,7 @@ export function login(username, password) {
             type: LOGIN_REQUEST,
         });
 
-        return fetch('http://localhost:8000/v1/login', {
+        return fetch('http://localhost:27017/v1/login', {
             method: 'POST',
             body: JSON.stringify({
                 username,
@@ -58,10 +66,18 @@ export function login(username, password) {
             },
         })
             .then(response => response.json())
-            .then(json => dispatch({
-                type: LOGIN_SUCCESS,
-                payload: json,
-            }))
+            .then(json => {
+                if (!json.token) {
+                    throw new Error('token has not been provided')
+                }
+
+                localStorage.setItem('token', json.token)
+
+                dispatch({
+                    type: LOGIN_SUCCESS,
+                    payload: json,
+                })
+            })
             .catch(reason => dispatch({
                 type: LOGIN_FAILURE,
                 payload: reason,

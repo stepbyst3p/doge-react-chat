@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -10,7 +9,7 @@ const styles = theme => ({
     }
 });
 
-class SignupForm extends React.Component {
+class LoginForm extends React.Component {
     state = {
         username: {
             value: "",
@@ -19,23 +18,7 @@ class SignupForm extends React.Component {
         password: {
             value: "",
             isValid: true
-        },
-        repeatedPassword: {
-            value: "",
-            isValid: true
         }
-    };
-
-    validate = () => {
-        const { password, repeatedPassword } = this.state;
-        const isValid = password.value === repeatedPassword.value;
-
-        this.setState({
-            password: { ...password, isValid },
-            repeatedPassword: { ...repeatedPassword, isValid }
-        });
-
-        return isValid;
     };
 
     handleInputChange = event => {
@@ -53,32 +36,14 @@ class SignupForm extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        if (!this.validate()) {
-            return;
-        }
         const { username, password } = this.state;
 
         this.props.onSubmit(username.value, password.value);
-
-        fetch("http://localhost:5555/v1/signup", {
-            method: "POST",
-            body: JSON.stringify({
-                username: username.value,
-                password: password.value
-            }),
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            }
-        })
-            .then(response => response.json())
-            .then(json => console.log(json))
-            .catch(reason => console.error(reason));
     };
 
     render() {
         const { classes } = this.props;
-        const { username, password, repeatedPassword } = this.state;
+        const { username, password } = this.state;
 
         return (
             <form onSubmit={this.handleSubmit}>
@@ -88,8 +53,8 @@ class SignupForm extends React.Component {
                     label="Username"
                     placeholder="Type your username..."
                     type="text"
-                    margin="normal"
                     name="username"
+                    margin="normal"
                     autoComplete="username"
                     value={username.value}
                     onChange={this.handleInputChange}
@@ -99,27 +64,14 @@ class SignupForm extends React.Component {
                     required
                     fullWidth
                     label="Password"
-                    placeholder="Type your password..."
+                    placeholder="Type your username..."
                     type="password"
-                    margin="normal"
                     name="password"
-                    autoComplete="new-password"
+                    margin="normal"
+                    autoComplete="current-password"
                     value={password.value}
                     onChange={this.handleInputChange}
                     error={!password.isValid}
-                />
-                <TextField
-                    required
-                    fullWidth
-                    label="Repeat password"
-                    placeholder="Repeat your password..."
-                    type="password"
-                    margin="normal"
-                    name="repeatedPassword"
-                    autoComplete="new-password"
-                    value={repeatedPassword.value}
-                    onChange={this.handleInputChange}
-                    error={!repeatedPassword.isValid}
                 />
                 <Button
                     fullWidth
@@ -128,11 +80,11 @@ class SignupForm extends React.Component {
                     color="primary"
                     className={classes.signUpButton}
                 >
-                    Signup
+                    Login
                 </Button>
             </form>
         );
     }
 }
 
-export default withStyles(styles)(SignupForm);
+export default withStyles(styles)(LoginForm);

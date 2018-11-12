@@ -8,8 +8,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import SignInForm from "./SignInForm";
-import SignUpForm from "./SignUpForm";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
 const styles = theme => ({
     formContainer: {
@@ -28,7 +28,7 @@ const styles = theme => ({
     }
 });
 
-class LoginForms extends React.Component {
+class WelcomePage extends React.Component {
     state = {
         activeTab: 0
     };
@@ -80,10 +80,10 @@ class LoginForms extends React.Component {
                                 </AppBar>
                                 <div className={classes.tabContent}>
                                     {activeTab === 0 && (
-                                        <SignInForm onSubmit={login} />
+                                        <LoginForm onSubmit={login} />
                                     )}
                                     {activeTab === 1 && (
-                                        <SignUpForm onSubmit={signup} />
+                                        <SignupForm onSubmit={signup} />
                                     )}
                                 </div>
                             </Paper>
@@ -95,4 +95,4 @@ class LoginForms extends React.Component {
     }
 }
 
-export default withStyles(styles)(LoginForms);
+export default withStyles(styles)(WelcomePage);
