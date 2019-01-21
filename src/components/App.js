@@ -1,9 +1,14 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import ChatPage from '../containers/ChatPage';
-import WelcomePage from '../containers/WelcomePage';
-import configureStore from '../store';
+import React from "react";
+import { Provider } from "react-redux";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect
+} from "react-router-dom";
+import ChatPage from "../containers/ChatPage";
+import WelcomePage from "../containers/WelcomePage";
+import configureStore from "../store";
 
 const store = configureStore();
 
@@ -19,4 +24,4 @@ const App = ({ classes }) => (
     </Provider>
 );
 
-export default App; 
+export default App;

@@ -1,95 +1,102 @@
 import {
-    SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE,
-    LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
-    LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE
-} from '../constants';
+    SIGNUP_REQUEST,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAILURE,
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGOUT_REQUEST,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAILURE
+} from "../constants";
 
 export function signup(username, password) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
-            type: SIGNUP_REQUEST,
+            type: SIGNUP_REQUEST
         });
 
-        return fetch('http://localhost:27017/v1/signup', {
-            method: 'POST',
+        return fetch("http://localhost:8000/v1/signup", {
+            method: "POST",
             body: JSON.stringify({
                 username,
-                password,
+                password
             }),
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
         })
             .then(response => response.json())
             .then(json => {
                 if (json.success) {
                     return json;
                 }
-                throw new Error(json.message)
+                throw new Error(json.message);
             })
             .then(json => {
                 if (!json.token) {
-                    throw new Error('token has not been provided')
+                    throw new Error("token has not been provided");
                 }
 
-                localStorage.setItem('token', json.token)
+                localStorage.setItem("token", json.token);
 
                 dispatch({
                     type: SIGNUP_SUCCESS,
-                    payload: json,
-                })
+                    payload: json
+                });
             })
-            .catch(reason => dispatch({
-                type: SIGNUP_FAILURE,
-                payload: reason
-            }))
-
-    }
+            .catch(reason =>
+                dispatch({
+                    type: SIGNUP_FAILURE,
+                    payload: reason
+                })
+            );
+    };
 }
 
 export function login(username, password) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
-            type: LOGIN_REQUEST,
+            type: LOGIN_REQUEST
         });
 
-        return fetch('http://localhost:27017/v1/login', {
-            method: 'POST',
+        return fetch("http://localhost:8000/v1/login", {
+            method: "POST",
             body: JSON.stringify({
                 username,
-                password,
+                password
             }),
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
         })
             .then(response => response.json())
             .then(json => {
                 if (!json.token) {
-                    throw new Error('token has not been provided')
+                    throw new Error("token has not been provided");
                 }
 
-                localStorage.setItem('token', json.token)
-
+                localStorage.setItem("token", json.token);
                 dispatch({
                     type: LOGIN_SUCCESS,
-                    payload: json,
-                })
+                    payload: json
+                });
             })
-            .catch(reason => dispatch({
-                type: LOGIN_FAILURE,
-                payload: reason,
-            }))
-    }
+            .catch(reason =>
+                dispatch({
+                    type: LOGIN_FAILURE,
+                    payload: reason
+                })
+            );
+    };
 }
 
 export function logout(username) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
-            type: LOGOUT_REQUEST,
+            type: LOGOUT_REQUEST
         });
-    }
+    };
 }
-

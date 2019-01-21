@@ -1,19 +1,19 @@
 import React from "react";
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
 import Chat from "./Chat";
 import SideBar from "./SideBar";
 import ChatHeader from "./ChatHeader";
 
-import { chats, messages } from '../mock-data';
+import { chats, messages } from "../mock-data";
 
 const styles = theme => ({
     root: {
-        position: 'relative',
-        display: 'flex',
-        width: '100%',
-        height: '100%',
-        backgroundColor: theme.palette.background.default,
-    },
+        position: "relative",
+        display: "flex",
+        width: "100%",
+        height: "100%",
+        backgroundColor: theme.palette.background.default
+    }
 });
 
 const ChatPage = ({ classes }) => (
@@ -22,7 +22,6 @@ const ChatPage = ({ classes }) => (
         <SideBar chats={chats} />
         <Chat messages={messages} />
     </div>
-)
-
+);
 
 export default withStyles(styles)(ChatPage);

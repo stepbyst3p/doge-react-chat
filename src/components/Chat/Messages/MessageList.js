@@ -1,6 +1,6 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Message from './Message';
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Message from "./Message";
 
 const styles = theme => ({
     messagesWrapper: {
@@ -10,9 +10,9 @@ const styles = theme => ({
         paddingTop: "24px",
         paddingBottom: "120px"
     }
-})
+});
 
-// TODO Сделать Pure Component 
+// TODO Сделать Pure Component
 class MessageList extends React.Component {
     componentDidMount() {
         this.scrollDownHistory();
@@ -32,13 +32,13 @@ class MessageList extends React.Component {
 
         return (
             <div className={classes.messagesWrapper} ref="messagesWrapper">
-                {messages && messages.map((message, index) => (
-                    <Message key={index} {...message} />
-                ))}
+                {messages &&
+                    messages.map((message, index) => (
+                        <Message key={index} {...message} />
+                    ))}
             </div>
         );
     }
 }
-
 
 export default withStyles(styles)(MessageList);
